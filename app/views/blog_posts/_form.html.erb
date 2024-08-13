@@ -1,0 +1,24 @@
+<%= form_with model: @blog_post, url: @blog_post.new_record? ? blog_posts_path : blog_post_path(@blog_post) do |form| %>
+    <% if @blog_post.errors.any? %>
+      <div>
+        <% @blog_post.errors.full_messages.each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+  
+    <div>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+  
+    <div>
+      <%= form.label :body %>
+      <%= form.text_area :body %>
+    </div>
+  
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  

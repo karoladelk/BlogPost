@@ -1,0 +1,29 @@
+
+
+<h1><%= @blog_post.title %></h1>
+<p><%= @blog_post.body %></p>
+
+<h2>Comments</h2>
+<% if @blog_post.comments.any? %>
+  <% @blog_post.comments.each do |comment| %>
+    <div>
+      <strong><%= comment.user.email %>:</strong>
+      <p><%= comment.content %></p>
+
+      
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No comments yet. Be the first to comment!</p>
+<% end %>
+
+<h3>Add a Comment</h3>
+<%= form_with url: blog_post_comments_path(@blog_post), local: true do |form| %>
+<div>
+    <%= form.text_area :content, placeholder: "Enter your comment" %>
+  </div>
+  <div>
+    <%= form.submit 'Post Comment' %>
+  </div>
+<% end %>
